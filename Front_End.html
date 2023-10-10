@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #0b0c0a;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin-top: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        /* Sign In and Sign Up buttons */
+        .header-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-buttons button {
+            background-color: hsl(180, 29%, 97%);
+            color: #f10818;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        /* Main content styles */
+        main {
+            padding: 20px;
+        }
+
+        /* Job search form styles */
+        #job-search {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #job-search h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        form {
+            display: flex;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #333;
+            color: #eb0808;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Job listings styles */
+        #job-listings {
+            margin-top: 20px;
+        }
+
+        .job-item {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .job-item h3 {
+            font-size: 20px;
+        }
+
+        .job-item p {
+            font-size: 16px;
+        }
+
+        /* Footer styles */
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Job Portal</h1>
+        <div class="header-buttons">
+            <button onclick="signIn()">Sign In</button>
+            <button onclick="signUp()">Sign Up</button>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <!-- Job search form -->
+        <section id="job-search">
+            <h2>Search jobs and internships.</h2>
+            <form>
+                <input type="text" id="search-keyword" placeholder="Skill,designations,companies">
+                <input type="text" id="search-location" placeholder="Location">
+                <button type="submit">Search jobs</button>
+            </form>
+        </section>
+
+        <!-- Job listings -->
+        <section id="job-listings">
+            <!-- Job listing items will be dynamically generated using JavaScript -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Job Portal</p>
+    </footer>
+
+    <script>
+        // JavaScript code goes here
+        const jobListings = [
+            { title: 'Software Engineer', location: 'India' },
+            { title: 'Test Engineering', location: 'India' },
+            { title: 'Telent acquisition', location: 'India' },
+            { title: 'Marketing Manager', location: 'San Francisco' },
+            // Add more job listings here
+        ];
+
+        // Function to display job listings
+        function displayJobListings() {
+            const jobListingsSection = document.getElementById('job-listings');
+            jobListingsSection.innerHTML = '';
+
+            jobListings.forEach(job => {
+                const jobItem = document.createElement('div');
+                jobItem.classList.add('job-item');
+                jobItem.innerHTML = `<h3>${job.title}</h3><p>${job.location}</p>`;
+                jobListingsSection.appendChild(jobItem);
+            });
+        }
+
+        // Add event listener to the search form
+        const searchForm = document.querySelector('form');
+        searchForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+            const keyword = document.getElementById('search-keyword').value;
+            const location = document.getElementById('search-location').value;
+
+            // Filter job listings based on keyword and location (you would typically fetch from a server)
+            const filteredListings = jobListings.filter(job => {
+                return job.title.includes(keyword) && job.location.includes(location);
+            });
+
+            // Display filtered job listings
+            displayJobListings(filteredListings);
+        });
+
+        // Initial display of job listings
+        displayJobListings();
+
+        // Sign In and Sign Up button actions (replace with your own functionality)
+        function signIn() {
+            alert('Sign In button clicked. Implement your sign-in logic.');
+        }
+
+        function signUp() {
+            alert('Sign Up button clicked. Implement your sign-up logic.');
+        }
+    </script>
+</body>
+</html>
